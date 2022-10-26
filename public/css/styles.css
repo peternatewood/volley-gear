@@ -1,0 +1,422 @@
+body * {
+  box-sizing: inherit;
+}
+body {
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #244;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.hide {
+  display: none !important;
+  overflow: hidden !important;
+}
+
+/* Canvas */
+#canvas-wrapper {
+  position: fixed;
+  overflow: hidden;
+  background: #2c2720;
+  color: #f7f0ff;
+  font-family: 'Gugi', Arial, sans-serif;
+  margin: -18rem auto 0;
+  width: 64rem;
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+#canvas-wrapper canvas {
+  background: transparent;
+  image-rendering: pixelated;
+  width: 100%;
+}
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#canvas {
+  position: relative;
+}
+/* Only shows if browser doesn't support the canvas element */
+#canvas table {
+  background: #000;
+  border-collapse: collapse;
+  color: #FFF;
+  font: bold 1em/1.2em Helvetica;
+  letter-spacing: 1px;
+  margin: 16px auto;
+}
+#canvas caption,
+#canvas th,
+#canvas td {
+  background: #000;
+  border: 1px solid #FFF;
+  padding: 1em;
+}
+#canvas td {
+  padding: 0.5em 1em;
+}
+
+/* Common interface elements */
+.interface {
+  z-index: 1;
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.title #title-container,
+.lobby #lobby,
+.game .game,
+.gameover .gameover {
+  display: block;
+}
+
+/* Title */
+#title-container {
+  color: #de946b;
+  background: #000;
+}
+.title-content {
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  top: 50%;
+  left: -100%;
+  transform: translateY(-50%);
+}
+.title-content h1 {
+  color: #214a4a;
+  text-shadow: 0.25rem 0.25rem #333;
+  font: bold 8rem/0.9 'Fugaz One', Arial, sans-serif;
+  margin: 0;
+}
+.title-content h1 span {
+  display: block;
+}
+.title-content h3 {
+  font-size: 2rem;
+  margin: 1.5rem 0;
+}
+.title-columns {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.controls {
+  width: 16rem;
+}
+.controls p {
+  font-size: 1.25rem;
+  margin: 0;
+}
+.controls .left,
+.controls .right {
+  display: inline-block;
+  vertical-align: top;
+}
+.controls .left {
+  margin-right: 0.5rem;
+}
+.controls .right {
+  margin-left: 0.5rem;
+}
+.title-content h4 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+.title-b {
+  padding-left: 0.25rem;
+}
+/* Title Animations */
+@keyframes slide-title-in {
+  0% { left: -100%; }
+  100% { left: 0%; }
+}
+.title-content .show-after-slide {
+  visibility: hidden;
+}
+.sliding-in .title-content {
+  animation: slide-title-in 800ms linear;
+}
+.slid-in .title-content {
+  left: 0%;
+}
+.slid-in .title-content .show-after-slide {
+  visibility: visible;
+}
+@keyframes flash {
+  0% { opacity: 1 }
+  49% { opacity: 1 }
+  50% { opacity: 0 }
+  99% { opacity: 0 }
+  100% { opacity: 1 }
+}
+.slid-in .title-content .flash {
+  animation: flash 1200ms linear infinite;
+}
+
+/* Lobby */
+#lobby {
+  text-align: left;
+  padding: 1rem;
+}
+
+/* Game */
+#ready-title {
+  position: absolute;
+  background: #000;
+  line-height: 2;
+  margin: 0 auto;
+  width: 8rem;
+  top: 12rem;
+  left: 0;
+  right: 0;
+}
+
+#game-bottom {
+  display: flex;
+  justify-content: space-between;
+  background: #000;
+  border: 3px double #777;
+  padding: 5px 0;
+  width: 100%;
+}
+.life-container {
+  width: 160px;
+}
+.life-container label,
+.life-bar-outer {
+  display: inline-block;
+  vertical-align: middle;
+}
+.life-container label {
+  text-transform: uppercase;
+}
+.life-bar-outer {
+  overflow: hidden;
+  position: relative;
+  border: 2px solid;
+  width: 96px;
+  height: 16px;
+}
+.life-bar-inner {
+  position: absolute;
+  background: #f80000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0%;
+}
+
+/* Gameover */
+.gameover #background,
+.gameover #game-bottom {
+  display: none;
+}
+#gameover {
+  display: none;
+}
+.gameover #gameover {
+  display: block;
+  position: absolute;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+}
+.gameover-buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Audio */
+.music-controls {
+  position: fixed;
+  box-sizing: border-box;
+  color: #FFF;
+  text-align: left;
+  padding: 0 12px;
+  width: calc((100% - 1024px) / 2);
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* Checkbox inputs */
+input[type="checkbox"] + label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  font: 1.5em monospace;
+  padding-left: 48px;
+  margin: 0;
+}
+input[type="checkbox"] + label:before,
+input[type="checkbox"] + label:after {
+  content: "";
+  position: absolute;
+  border-color: transparent #FFF transparent transparent;
+  border-radius: 100%;
+  border-style: solid;
+  border-width: 4px;
+  top: 50%;
+}
+input[type="checkbox"] + label:before {
+  margin-top: -14px;
+  width: 20px;
+  height: 20px;
+  left: 0px;
+}
+input[type="checkbox"] + label:after {
+  margin-top: -20px;
+  width: 32px;
+  height: 32px;
+  left: -4px;
+}
+input[type="checkbox"]:checked + label:before,
+input[type="checkbox"]:checked + label:after {
+  background: #FFF;
+  border: 0;
+  border-radius: 0;
+  margin-top: -2px;
+  width: 16px;
+  height: 4px;
+  left: 20px;
+}
+input[type="checkbox"]:checked + label:before {
+  transform: rotate(45deg);
+}
+input[type="checkbox"]:checked + label:after {
+  transform: rotate(-45deg);
+}
+.speaker {
+  position: absolute;
+  display: block;
+  background: #FFF;
+  width: 10px;
+  height: 10px;
+  top: calc(50% - 5px);
+  left: 0;
+}
+.speaker:after {
+  content: "";
+  position: absolute;
+  border-color: transparent #FFF transparent transparent;
+  border-radius: 100%;
+  border-style: solid;
+  border-width: 16px;
+  top: -11px;
+  left: -15px;
+}
+/* Range inputs */
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 18px auto;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+/* Track for webkit */
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: inset 1px 1px 1px #000000, inset 0px 0px 1px #0d0d0d;
+  background: #333;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+/* Thumb for webkit */
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 24px;
+  width: 8px;
+  border-radius: 4px;
+  background: #CCC;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -9px;
+}
+/* Override webkit track styles on focus */
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #333;
+}
+/* Track for Firefox */
+input[type=range]::-moz-range-track {
+  cursor: pointer;
+  width: 100%;
+  height: 8.4px;
+  animate: 0.2s;
+  box-shadow: inset 1px 1px 1px #000000, inset 0px 0px 1px #0d0d0d;
+  background: #333;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+/* Thumb for Firefox */
+input[type=range]::-moz-range-thumb {
+  background: #CCC;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  height: 24px;
+  width: 8px;
+  cursor: pointer;
+}
+/* Track for IE */
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #CCC;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: inset 1px 1px 1px #000000, inset 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #CCC;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: inset 1px 1px 1px #000000, inset 0px 0px 1px #0d0d0d;
+}
+/* Thumb for IE */
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 24px;
+  width: 8px;
+  border-radius: 4px;
+  background: #FFF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #333;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #333;
+}
+input[type=range]::-moz-focus-outer {
+  border: 0;
+}

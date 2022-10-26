@@ -1,0 +1,7 @@
+/node_modules
+# Uglified js file
+public/**/*.js
+# OSX
+.DS_Store
+._*.png
+._*.ico

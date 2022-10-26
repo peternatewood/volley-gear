@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Volley Gear - Tactical Sports Action</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width initial-scale=1"/>
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com"/>
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+	<link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Gugi&display=swap" rel="stylesheet"/>
+
+	<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+	<link rel="stylesheet" type="text/css" href="css/styles.css"/>
+
+	<!-- <script type="text/javascript" src="/socket.io/socket.io.js"></script> -->
+	<script type="text/javascript" src="js/client.js" async defer></script>
+</head>
+<body>
+	<!-- Backgrounds -->
+	<img id="background-1" class="hide" src="images/background_1.png"/>
+
+	<!-- Credit to retrogamezone.co.uk, ripped by GOEMAR -->
+	<img id="tile-sheet" class="hide" src="images/tile_sheet.png"/>
+	<img id="player-sheet" class="hide" src="images/player_sheet.png"/>
+	<!-- For rotating the grenade -->
+	<canvas id="grenade" class="hide" width="12" height="12"></canvas>
+
+	<header id="header">
+		<h3 id="player-name"></h3>
+		<h3 id="opponent-name"></h3>
+	</header>
+
+	<noscript>Please enable JavaScript to play this game :)</noscript>
+	<main id="canvas-wrapper" class="title">
+		<div id="gameover">
+			<h1>Game Over</h1>
+
+			<h2><span id="winner-name"></span> wins</h2>
+		</div>
+
+		<canvas id="background" width="512" height="288"></canvas>
+
+		<canvas id="canvas" width="512" height="288">
+		<!-- Table for browser requirements -->
+			<table>
+				<caption>Sorry, your browser does not meet the minimum requirements for this game</caption>
+				<thead>
+					<tr><th>Browser</th><th>Oldest Supported Version</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>Internet Explorer</td><td>9.0</td></tr>
+					<tr><td>Firefox</td><td>3.6</td></tr>
+					<tr><td>Chrome</td><td>4.0</td></tr>
+					<tr><td>Safari</td><td>4.0</td></tr>
+					<tr><td>Opera</td><td>10.1</td></tr>
+				</tbody>
+			</table>
+		</canvas>
+
+		<div id="title-container" class="interface">
+			<div class="title-content">
+				<div class="title-columns">
+					<div class="controls show-after-slide">
+						<h4>Player 1</h4>
+						<p>
+							&uarr;<br/>
+							W<br/>
+							<span class="left">&larr;A</span> <span class="right">D&rarr;</span><br/>
+							S<br/>
+							&darr;<br/>
+							Spacebar = Punch
+						</p>
+					</div>
+
+					<div>
+						<h1><span class="title-a">Pong</span><span class="title-b">Gear</span></h1>
+						<h3 class="show-after-slide">Tactical Sports Action</h3>
+					</div>
+
+					<div class="controls show-after-slide">
+						<h4>Player 2</h4>
+						<p>
+							&uarr;<br/>
+							Up<br/>
+							<span class="left">&larr;Left</span><span class="right">Right&rarr;</span><br/>
+							Down<br/>
+							&darr;<br/>
+							Enter = Punch
+						</p>
+					</div>
+				</div>
+
+				<h4 class="show-after-slide flash">Click or press a key to enter the lobby</h4>
+			</div>
+		</div>
+
+		<div id="lobby" class="interface">
+			<h2>Lobby</h2>
+			<p>Below is a list of open games waiting for a second player. Click an open game and press Play to join. If there are no games in the list, create one with the button below!</p>
+
+			<h3>Games</h3>
+
+			<div id="games-list">
+				<div class="open-game">
+					<h4>Player Name</h4>
+					<button class="play-button">Play</button>
+				</div>
+			</div>
+
+			<div class="buttons-container">
+				<!-- <button id="play-button" disabled>Play</button> -->
+				<button id="create-button">Create Game</button>
+			</div>
+		</div>
+
+		<div class="interface game">
+			<h2 id="ready-title">Ready!</h2>
+		</div>
+
+		<div class="interface gameover">
+			<div class="gameover-buttons">
+				<button id="rematch">Rematch</button>
+				<button id="new-game">New Game</button>
+			</div>
+		</div>
+
+		<div id="game-bottom" class="game">
+			<div class="life-container">
+				<label>Life</label>
+				<div class="life-bar-outer">
+					<div id="life-bar-inner-0" class="life-bar-inner"></div>
+				</div>
+			</div>
+
+			<div class="life-container">
+				<label>Life</label>
+				<div class="life-bar-outer">
+					<div id="life-bar-inner-1" class="life-bar-inner"></div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<!-- Audio files and controls-->
+	<div class="hide">
+		<audio id="music-tara" src="sounds/msx-tara.mp3" loop></audio>
+	</div>
+
+	<aside class="music-controls">
+		<div class="controls-container">
+			<!-- <h1>Music</h1> -->
+			<input id="music-mute" class="hide" type="checkbox" checked/>
+			<label for="music-mute"><i class="speaker"></i>Music</label>
+			<input id="music-volume" type="range" min="0" max="1" step="0.01" value="1"/>
+		</div>
+
+		<div class="controls-container">
+			<!-- <h1>Sounds</h1> -->
+			<input id="sound-mute" class="hide" type="checkbox"/>
+			<label for="sound-mute"><i class="speaker"></i>Sounds</label>
+			<input id="sound-volume" type="range" min="0" max="1" step="0.01" value="1"/>
+		</div>
+	</aside>
+</body>
+</html>

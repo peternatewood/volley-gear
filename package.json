@@ -1,0 +1,19 @@
+{
+  "name": "volley-gear",
+  "version": "2.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/peternatewood/volley-gear.git"
+  },
+  "scripts":{
+    "dev": "copy /y src\\client.js public\\js\\client.js",
+    "uglify": "uglifyjs src/client.js --compress --mangle -o public/js/client.js"
+  },
+  "main": "app.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "uglify-js":"^3.17.3"
+  }
+}
